@@ -8,6 +8,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!-- Mapeamento das Classes Modelo -->
+		<class>br.com.alura.loja.modelo.Produto</class>
 			
 		<properties>
 			<!-- Dados da Conexao -->
