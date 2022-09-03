@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.alura.loja.dao.ProdutoDAO;
 import br.com.alura.loja.modelo.Produto;
+import br.com.alura.loja.util.JPAUtil;
 
 public class CadastroProdutoTest {
 
@@ -15,13 +17,12 @@ public class CadastroProdutoTest {
 		celular.setNome("Xiaomi Redmi Note 11s");
 		celular.setDescricao("Ótimo");
 		celular.setPreco(new BigDecimal(1900));
-		
-		// responsavel pela criação do entityManager
-		EntityManagerFactory emf = new Persistence().createEntityManagerFactory("default"); 
-		EntityManager em = emf.createEntityManager();
-		
+
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDAO dao = new ProdutoDAO(em);
+
 		em.getTransaction().begin();
-		em.persist(celular);
+		dao.save(celular);
 		em.getTransaction().commit();
 		em.close();
 	}
